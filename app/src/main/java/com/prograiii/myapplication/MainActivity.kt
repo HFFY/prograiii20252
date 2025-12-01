@@ -131,6 +131,7 @@ class MainActivity : AppCompatActivity() {
             1234,
             1234
         )
+
         val estudiant2 = Estudiante(
             "Paco",
             "Fabian",

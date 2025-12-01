@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Progra 3 2</string>
+
+
+    <string name="hola_mundo">Hola Mundo progra 3</string>
+    <string name="cambiar_de_activity">Cambiar de activity</string>
+    <string name="guardar_texto">Guardar Texto</string>
 </resources>
