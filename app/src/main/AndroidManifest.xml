@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".InteraccionDeVistasActivity"
+            android:name=".EjemplosDeImagenesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +21,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EjemploConstraintActivity"
+            android:name=".InteraccionDeVistasActivity"
             android:exported="true"/>
         <activity
+            android:name=".EjemploConstraintActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".EjemploViewBindingActivity"
             android:exported="false" />
