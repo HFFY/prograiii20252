@@ -5,4 +5,5 @@
     <string name="hola_mundo">Hola Mundo progra 3</string>
     <string name="cambiar_de_activity">Cambiar de activity</string>
     <string name="guardar_texto">Guardar Texto</string>
+    <string name="ejemplo_de_cardview">Ejemplo de Cardview</string>
 </resources>

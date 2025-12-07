@@ -6,6 +6,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.prograiii.myapplication.dataclases.Estudiante
+import com.prograiii.myapplication.dataclases.actualizarSemestre
+import com.prograiii.myapplication.dataclases.esUnSemestreAvanzado
 
 class MainActivity : AppCompatActivity() {
 

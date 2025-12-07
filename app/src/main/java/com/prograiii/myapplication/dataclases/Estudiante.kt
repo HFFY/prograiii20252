@@ -1,4 +1,4 @@
-package com.prograiii.myapplication
+package com.prograiii.myapplication.dataclases
 
 data class Estudiante(
     val primerNombre: String,
