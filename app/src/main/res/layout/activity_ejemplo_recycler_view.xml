@@ -17,6 +17,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/button_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Log Out"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_ejemplo_clases"
                 android:layout_width="match_parent"

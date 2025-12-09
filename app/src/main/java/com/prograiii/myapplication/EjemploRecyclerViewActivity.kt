@@ -8,6 +8,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 import com.prograiii.myapplication.adapters.EjemploAdater
 import com.prograiii.myapplication.databinding.ActivityEjemploRecyclerViewBinding
 import com.prograiii.myapplication.dataclases.Estudiante
@@ -17,6 +20,7 @@ import kotlinx.serialization.json.Json
 class EjemploRecyclerViewActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityEjemploRecyclerViewBinding
+    lateinit var auth: FirebaseAuth
 
     val adapterEjemplo1: EjemploAdater by lazy { EjemploAdater() }
 
@@ -28,6 +32,7 @@ class EjemploRecyclerViewActivity : AppCompatActivity() {
 
         binding = ActivityEjemploRecyclerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = Firebase.auth
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -83,5 +88,9 @@ class EjemploRecyclerViewActivity : AppCompatActivity() {
 
         val strEstudiante = Json.encodeToString(estudiante1)
         binding.textViewRojo.text = strEstudiante
+
+        binding.buttonLogout.setOnClickListener {
+            auth.signOut()
+        }
     }
 }
