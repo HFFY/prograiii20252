@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.prograiii.myapplication.adapters.EjemploAdater
 import com.prograiii.myapplication.databinding.ActivityEjemploRecyclerViewBinding
+import com.prograiii.myapplication.dataclases.Estudiante
 import com.prograiii.myapplication.dataclases.TituloDataClass
+import kotlinx.serialization.json.Json
 
 class EjemploRecyclerViewActivity : AppCompatActivity() {
 
@@ -68,5 +70,18 @@ class EjemploRecyclerViewActivity : AppCompatActivity() {
         binding.recyclerEjemploClasesDos.layoutManager =
             LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.recyclerEjemploClasesDos.adapter = adapterEjemplo2
+
+        val estudiante1 = Estudiante(
+            "Hugo",
+            "Fabian",
+            "Flores",
+            "Yañez",
+            1234,
+            1234,
+            10
+        )
+
+        val strEstudiante = Json.encodeToString(estudiante1)
+        binding.textViewRojo.text = strEstudiante
     }
 }

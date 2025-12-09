@@ -23,6 +23,8 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:id="@+id/text_view_rojo"
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/rojo"/>

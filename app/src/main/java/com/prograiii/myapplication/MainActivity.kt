@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.prograiii.myapplication.dataclases.Estudiante
 import com.prograiii.myapplication.dataclases.actualizarSemestre
 import com.prograiii.myapplication.dataclases.esUnSemestreAvanzado
+import kotlinx.serialization.json.Json
 
 class MainActivity : AppCompatActivity() {
 
@@ -82,6 +83,8 @@ class MainActivity : AppCompatActivity() {
         buttonEjemplo.setOnClickListener {
             println("He sido Clickeado")
         }
+
+        val jsonString: String = Json.encodeToString(estudiante1)
 
     }
 

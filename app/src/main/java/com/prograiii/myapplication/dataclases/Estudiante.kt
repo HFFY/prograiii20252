@@ -1,5 +1,8 @@
 package com.prograiii.myapplication.dataclases
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Estudiante(
     val primerNombre: String,
     val segundoNombre: String?,
