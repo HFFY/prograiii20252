@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".EjemploRecyclerViewActivity"
-            android:exported="true" >
+            android:name=".EjemploDePersistenciaActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,8 +21,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EjemplosDeImagenesActivity"
+            android:name=".EjemploRecyclerViewActivity"
             android:exported="true"/>
+        <activity
+            android:name=".EjemplosDeImagenesActivity"
+            android:exported="true" />
         <activity
             android:name=".InteraccionDeVistasActivity"
             android:exported="true" />
