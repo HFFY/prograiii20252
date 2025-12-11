@@ -7,8 +7,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.room.Room
+import com.prograiii.myapplication.basededatos.EjemploDao
+import com.prograiii.myapplication.basededatos.EjemploDataBase
+import com.prograiii.myapplication.basededatos.EjemploParaRoom
 import com.prograiii.myapplication.databinding.ActivityEjemploDePersistenciaBinding
 import com.prograiii.myapplication.dataclases.Estudiante
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 
 class EjemploDePersistenciaActivity : AppCompatActivity() {
@@ -17,10 +26,13 @@ class EjemploDePersistenciaActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
     val context: Context = this
 
+    private lateinit var ejemploDao: EjemploDao
+
     companion object{
         val NOMBRE_FICHERO_SHARED_PREFERENCES = "Progra3II"
         val NOMBRE_DATO_EJEMPLO = "DatoEjemplo"
         val NOMBRE_ESTUADIANTE_GUARDADO = "EstudianteAlmacenado"
+        val DATABASE_NAME: String = "USER_DATABASE"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +44,12 @@ class EjemploDePersistenciaActivity : AppCompatActivity() {
         sharedPreferences = context.getSharedPreferences(
             NOMBRE_FICHERO_SHARED_PREFERENCES,MODE_PRIVATE
         )
+
+        val ejemploDataBase = Room.databaseBuilder(
+            context, EjemploDataBase::class.java, DATABASE_NAME
+        ).build()
+
+        ejemploDao = ejemploDataBase.ejemploDao()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -62,6 +80,7 @@ class EjemploDePersistenciaActivity : AppCompatActivity() {
                 NOMBRE_ESTUADIANTE_GUARDADO,
                 estudianteString
             )
+            guardarDatosEnBaseDeDatos()
         }
 
         binding.buttonMostrarDatosShared.setOnClickListener {
@@ -75,8 +94,10 @@ class EjemploDePersistenciaActivity : AppCompatActivity() {
                 val estudianteDecodificado: Estudiante = Json.decodeFromString<Estudiante>(
                     estudainteGuardado
                 )
-                binding.textViewDemosttracion.text = estudianteDecodificado.primerNombre
             }
+
+            val datosEjemploRoom  = obtenerDatosEnBaseDeDatos()
+            binding.textViewDemosttracion.text = datosEjemploRoom.toString()
 
         }
     }
@@ -94,6 +115,28 @@ class EjemploDePersistenciaActivity : AppCompatActivity() {
         val editor = sharedPreferences.edit()
         editor.putString(nombreDelDato, datoAGuardar)
         editor.apply()
+    }
+
+    private fun guardarDatosEnBaseDeDatos() {
+        GlobalScope.launch {
+            val ejemplo = EjemploParaRoom(
+                id = 0,
+                unTextoColumna = "Texto Ejemplo",
+                unNumeroColumna = 1,
+                unBooleanColumna = true,
+            )
+            ejemploDao.insertAll(ejemplo)
+        }
+    }
+
+    private fun obtenerDatosEnBaseDeDatos():List<EjemploParaRoom>  {
+        var ejemplo: List<EjemploParaRoom> = listOf()
+        runBlocking {
+            withContext(Dispatchers.IO){
+                ejemplo = ejemploDao.getAll()
+            }
+        }
+        return ejemplo
     }
 
 }

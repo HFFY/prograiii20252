@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     //Implementacion de Serializacion paso 1
     kotlin("plugin.serialization") version "1.9.0"
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -50,6 +51,11 @@ dependencies {
 
     //Implementacion de Serializacion paso 2
     implementation(libs.kotlinx.serialization.json)
+
+    implementation("androidx.room:room-runtime:2.8.3")
+    implementation("androidx.room:room-ktx:2.8.3")
+    ksp("androidx.room:room-compiler:2.8.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
