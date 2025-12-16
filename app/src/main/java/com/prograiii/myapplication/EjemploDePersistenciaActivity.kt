@@ -3,6 +3,7 @@ package com.prograiii.myapplication
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -90,11 +91,15 @@ class EjemploDePersistenciaActivity : AppCompatActivity() {
                 NOMBRE_ESTUADIANTE_GUARDADO
             )
 
+            Log.v("Progra 3 ejemplo Debug", "El codigo si genera un estudiante: ${estudainteGuardado}")
+
             if (estudainteGuardado != null){
                 val estudianteDecodificado: Estudiante = Json.decodeFromString<Estudiante>(
                     estudainteGuardado
                 )
             }
+
+            Log.v("Progra 3 3jemplo Debug", "Puede docdificar del Json")
 
             val datosEjemploRoom  = obtenerDatosEnBaseDeDatos()
             binding.textViewDemosttracion.text = datosEjemploRoom.toString()
